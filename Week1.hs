@@ -8,7 +8,7 @@ dropLastDigit x = x `div` 10
 
 toDigits :: Integer -> [Integer]
 toDigits x
-	| x < 0 = []
+	| x < 1 = []
 	| x < 10 = [x]
 	| otherwise = (toDigits (dropLastDigit x)) ++ [lastDigit x]
 
@@ -23,3 +23,8 @@ validate :: Integer -> Bool
 validate x
 	| ((sumDigits $ doubleEveryOther $ toDigits x) `mod` 10) == 0 = True
 	| otherwise = False
+
+type Peg = String
+type Move = (Peg, Peg)
+hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
+hanoi = undefined
