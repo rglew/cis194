@@ -1,15 +1,15 @@
-module Main where
+module Week1Tests where
 
 import Test.HUnit
 import Week1 
 
 
-main =  do runTestTT week1Ex1Tests
-           runTestTT week1Ex2Tests
-           runTestTT week1Ex3Tests
-           runTestTT week1Ex4Tests
-           runTestTT week1Ex5Tests
-           runTestTT week1Ex6Tests
+week1Tests =  do runTestTT week1Ex1Tests
+                 runTestTT week1Ex2Tests
+                 runTestTT week1Ex3Tests
+                 runTestTT week1Ex4Tests
+                 runTestTT week1Ex5Tests
+                 runTestTT week1Ex6Tests
 
 test1_1 = TestCase (assertEqual "lastDigit" (3) (lastDigit 123))
 test1_2 = TestCase (assertEqual "lastDigit" (0) (lastDigit 0))
