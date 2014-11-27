@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var shell = require('gulp-shell')
 
 gulp.task('default', function() {
-  gulp.start('example');
+  gulp.start('test');
 });
 
 gulp.task('watch', function() {
@@ -13,6 +13,6 @@ gulp.task('watch', function() {
 });
 
 gulp.task('test', shell.task([
-  'runHaskell Main.hs'
+  'runhaskell Main.hs'
 ]))
 

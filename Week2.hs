@@ -43,3 +43,6 @@ formableBy (x:xs) b
 
 wordsFrom :: Hand -> [String]
 wordsFrom hand = filter (`formableBy` hand) allWords
+
+wordFitsTemplate :: Template -> Hand -> String -> Bool
+wordFitsTemplate t h s = undefined
