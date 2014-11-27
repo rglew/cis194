@@ -34,12 +34,12 @@ type STemplate = Template
 
 -- Write your code below:
 formableBy :: String -> Hand -> Bool
-formableBy _ [] = False
 formableBy [] _ = True
+formableBy _ [] = False
 formableBy (x:xs) b
     | elem x b == False = False
-    | elem x b == True = formableBy xs (delete x b)
-    | otherwise = False
+    | otherwise = formableBy xs (delete x b)
+ 
 
 wordsFrom :: Hand -> [String]
 wordsFrom hand = filter (`formableBy` hand) allWords

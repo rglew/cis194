@@ -9,7 +9,6 @@ dropLastDigit x = x `div` 10
 toDigits :: Integer -> [Integer]
 toDigits x
 	| x < 1 = []
-	| x < 10 = [x]
 	| otherwise = (toDigits (dropLastDigit x)) ++ [lastDigit x]
 
 doubleEveryOther :: [Integer] -> [Integer]
