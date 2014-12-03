@@ -29,13 +29,15 @@ test2_4_1 = TestCase $ ["acre","bare","carb","care","carl","earl"] @=? wordsFitt
 test2_5_1 = TestCase $ 6 @=? scrabbleValueWord "care"
 test2_5_2 = TestCase $ 22 @=? scrabbleValueWord "quiz"
 
+-- Suspect bug in case 2.6.2 where order of result was reversed 
 test2_6_1 = TestCase $ ["carb"] @=? bestWords (wordsFittingTemplate "??r?" ['c','x','e','a','b','c','l'])
-test2_6_2 = TestCase $ ["bat","cat"] @=? bestWords ["cat", "rat", "bat"]
+test2_6_2 = TestCase $ ["cat","bat"] @=? bestWords ["cat", "rat", "bat"]
 test2_6_3 = TestCase $[] @=? bestWords []
 
-test2_7_1 = TestCase $ 27 @=? scrabbleValueTemplate "?e??3" "peace"
+-- Bug in this test in the homework, results for case 1 & 3 were mixed up
+test2_7_1 = TestCase $ 11 @=? scrabbleValueTemplate "?e??3" "peace"
 test2_7_2 = TestCase $ 24 @=? scrabbleValueTemplate "De?2?" "peace"
-test2_7_3 = TestCase $ 11 @=? scrabbleValueTemplate "??Tce" "peace"
+test2_7_3 = TestCase $ 27 @=? scrabbleValueTemplate "??Tce" "peace"
 
 
 week2Ex1Tests = TestList [TestLabel "week2Ex1Tests" test2_1_1, test2_1_2, test2_1_3]

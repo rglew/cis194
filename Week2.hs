@@ -55,21 +55,52 @@ wordFitsTemplate t h s
 
 
 wordsFittingTemplate :: Template -> Hand -> [String]
-wordsFittingTemplate t h = wordsFrom (buildTiles t h) 
+--wordsFittingTemplate t h = filter matchesPattern t (wordsFrom (buildTiles t h)) 
+wordsFittingTemplate t h = [x | x <- (wordsFrom (buildTiles t h)),(matchesPattern t x)]
 
 scrabbleValueWord :: String -> Int
-scrabbleValueWord s = undefined
+scrabbleValueWord s = sum $ map (scrabbleValue) s
 
 bestWords :: [String] -> [String]
-bestWords s = undefined
+bestWords s = [x | x <- s, ((scrabbleValueWord x) ==  (maximum $ map scrabbleValueWord s))]
 
 scrabbleValueTemplate :: STemplate -> String -> Int
-scrabbleValueTemplate = undefined
+scrabbleValueTemplate st word = applyWordMulti st (applyLetterMulti st word)
 
 buildTiles :: [Char] -> [Char] -> [Char]
 buildTiles t h = concat (filter (\x -> x /= "") (splitOn "?" t)) ++ h
 
-matchesPattern :: String -> String -> Bool
+matchesPattern :: Template -> String -> Bool
 matchesPattern t w 
        | length t /= length w = False
-       | otherwise = True 
+       | t == w = True
+       | otherwise = foldl (&&) True (zipWith matchElem t w) 
+
+matchElem :: Char -> Char -> Bool
+matchElem templateChar wordChar 
+      | templateChar == wordChar = True
+      | templateChar == '?' = True
+      | otherwise = False
+
+applyLetterMulti :: STemplate -> String -> Int
+applyLetterMulti st word = sum $ zipWith stElem st word
+
+applyWordMulti :: STemplate -> Int -> Int
+applyWordMulti st ewv 
+      | elem 'D' st = ewv * 2
+      | elem 'T' st = ewv * 3
+      | elem 'D' st  && elem 'T' st = ewv * 6
+      | otherwise = ewv
+
+stElem :: Char -> Char -> Int
+stElem ste we 
+      | ste == '2' = scrabbleValue we * 2
+      | ste == '3' = scrabbleValue we * 3
+      | otherwise = scrabbleValue we 
+
+-- Bonus
+matchesPattern2 :: Template -> String -> Bool
+matchesPattern2 t w 
+       | length t < length w = False
+       | t == w = True
+       | otherwise = foldl (&&) True (zipWith matchElem t w) 
