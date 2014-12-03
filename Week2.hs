@@ -9,6 +9,9 @@ module Week2 where
 
 import Words
 import Data.List
+import Data.List.Split
+import Text.Regex.Posix
+
 
 -- Though a Scrabble hand is the same Haskell type as a Scrabble word, they
 -- have different properties. Specifically, a hand is unordered whereas a word
@@ -45,4 +48,28 @@ wordsFrom :: Hand -> [String]
 wordsFrom hand = filter (`formableBy` hand) allWords
 
 wordFitsTemplate :: Template -> Hand -> String -> Bool
-wordFitsTemplate t h s = undefined
+wordFitsTemplate t h s 
+    | length t /= length s = False 
+    | t == s = True
+    | otherwise = formableBy s (buildTiles t h)
+
+
+wordsFittingTemplate :: Template -> Hand -> [String]
+wordsFittingTemplate t h = wordsFrom (buildTiles t h) 
+
+scrabbleValueWord :: String -> Int
+scrabbleValueWord s = undefined
+
+bestWords :: [String] -> [String]
+bestWords s = undefined
+
+scrabbleValueTemplate :: STemplate -> String -> Int
+scrabbleValueTemplate = undefined
+
+buildTiles :: [Char] -> [Char] -> [Char]
+buildTiles t h = concat (filter (\x -> x /= "") (splitOn "?" t)) ++ h
+
+matchesPattern :: String -> String -> Bool
+matchesPattern t w 
+       | length t /= length w = False
+       | otherwise = True 
