@@ -2,6 +2,8 @@ language: haskell
 notifications:
   email: false
 
+repo_token: XXfgpYZr0ll7yTzRkib55x5OtdBqxB6dA
+
 before_install:
   - cabal install hpc-coveralls
 script:
