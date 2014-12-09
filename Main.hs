@@ -2,8 +2,8 @@ module Main where
 
 import Week1Tests
 import Week2Tests
-import TastyPOC
+import Week3Tests
 
 main = do week1Tests 
           week2Tests
-          tastyPOC
+          week3Tests

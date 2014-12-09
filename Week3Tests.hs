@@ -8,9 +8,9 @@ import Test.Tasty.HUnit
 week3Tests = defaultMain tests
 
 tests :: TestTree
-tests = testGroup "Tests" [unitTests]
+tests = testGroup "Week 3 Tests" [unitTests]
 
-unitTests = testGroup "Unit tests"
+unitTests = testGroup "Week 3 Unit tests"
   [ testCase "Parse error message" $
        ValidLM (LogMessage (Error 2) 562 "help help") @=? parseMessage "E 2 562 help help"
 

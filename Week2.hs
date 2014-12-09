@@ -55,7 +55,6 @@ wordFitsTemplate t h s
 
 
 wordsFittingTemplate :: Template -> Hand -> [String]
---wordsFittingTemplate t h = filter matchesPattern t (wordsFrom (buildTiles t h)) 
 wordsFittingTemplate t h = [x | x <- (wordsFrom (buildTiles t h)),(matchesPattern t x)]
 
 scrabbleValueWord :: String -> Int
