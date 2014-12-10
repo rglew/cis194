@@ -47,6 +47,9 @@ formableBy (x:xs) b
 wordsFrom :: Hand -> [String]
 wordsFrom hand = filter (`formableBy` hand) allWords
 
+-- not same length then bail out
+-- if same then also know
+-- otherwise we need to check
 wordFitsTemplate :: Template -> Hand -> String -> Bool
 wordFitsTemplate t h s 
     | length t /= length s = False 
@@ -54,6 +57,7 @@ wordFitsTemplate t h s
     | otherwise = formableBy s (buildTiles t h)
 
 
+-- list comprehension to 
 wordsFittingTemplate :: Template -> Hand -> [String]
 wordsFittingTemplate t h = [x | x <- (wordsFrom (buildTiles t h)),(matchesPattern t x)]
 
@@ -63,18 +67,21 @@ scrabbleValueWord s = sum $ map (scrabbleValue) s
 bestWords :: [String] -> [String]
 bestWords s = [x | x <- s, ((scrabbleValueWord x) ==  (maximum $ map scrabbleValueWord s))]
 
+-- uses helper functions to calculate the score...
 scrabbleValueTemplate :: STemplate -> String -> Int
 scrabbleValueTemplate st word = applyWordMulti st (applyLetterMulti st word)
 
 buildTiles :: [Char] -> [Char] -> [Char]
 buildTiles t h = concat (filter (\x -> x /= "") (splitOn "?" t)) ++ h
 
+-- determines if it matches by zipping the template and the hand together with the func matchelem and folding.  If it's all True it stays True but if anything fails it is False
 matchesPattern :: Template -> String -> Bool
 matchesPattern t w 
        | length t /= length w = False
        | t == w = True
        | otherwise = foldl (&&) True (zipWith matchElem t w) 
 
+-- build a list of True/False so we can zip it
 matchElem :: Char -> Char -> Bool
 matchElem templateChar wordChar 
       | templateChar == wordChar = True

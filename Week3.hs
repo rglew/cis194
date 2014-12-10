@@ -3,6 +3,8 @@
 module Week3 where
 
 import Log
+import Data.List
+
 
 parseMessage :: String -> MaybeLogMessage
 parseMessage message = case (words message !! 0) of
@@ -12,3 +14,18 @@ parseMessage message = case (words message !! 0) of
 
 toInt :: String -> Int
 toInt s = read s :: Int
+
+validMessagesOnly :: [MaybeLogMessage] -> [LogMessage]
+validMessagesOnly mlm = [x | ValidLM x <- mlm]
+
+parse :: String -> [LogMessage]
+parse s = validMessagesOnly $ map (\x-> parseMessage x) (lines s)
+
+compareMsgs :: LogMessage -> LogMessage -> Ordering
+compareMsgs (LogMessage a b c) (LogMessage d e f) 
+       | b == e = EQ
+       | b < e = LT
+       | otherwise = GT
+
+sortMessages :: [LogMessage] -> [LogMessage]
+sortMessages llm = sortBy compareMsgs llm
