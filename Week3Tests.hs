@@ -37,4 +37,8 @@ unitTests = testGroup "Week 3 Unit tests"
 
   , testCase "Check sorting" $
      ([LogMessage Info 4076 "verse.'",LogMessage Info 4681 "ehci 0xf43d000:15: regista14: [0xbffff 0xfed nosabled 00-02] Zonseres: brips byted nored)",LogMessage Info 4764 "He trusts to you to set them free,",LogMessage Info 5053 "pci_id: con ing!"]) @=? sortMessages testFullLog
+ 
+  -- This uses IO() in the test so won't work here... need to redo it without reading from a file 
+  --, testCase "Test What Went Wrong" $
+  --   "Way too many pickles\nBad pickle-flange interaction detected\nFlange failed!" @=? testWhatWentWrong parse whatWentWrong "sample.log"
   ]
