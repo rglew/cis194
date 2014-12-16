@@ -13,3 +13,4 @@ cabal.config
 Main
 TastyPOC
 LICENSE.save*
+*.pdf
