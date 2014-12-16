@@ -34,6 +34,9 @@ sortMessages llm = sortBy compareMsgs llm
 whatWentWrong :: [LogMessage] -> [String]
 whatWentWrong lms = [str | (LogMessage _ _ str) <- badErrors lms]
 
+whatWentWrong' :: [LogMessage] -> [LogMessage]
+whatWentWrong' lms = [x |  x <- badErrors lms]
+
 badErrors :: [LogMessage] -> [LogMessage]
 badErrors mlm = sortMessages $ [x | x@(LogMessage (Error (s)) _ _) <- mlm, s > 50]
 
@@ -41,10 +44,13 @@ messagesAbout :: String -> [LogMessage] -> [LogMessage]
 messagesAbout s lm = [x | x@(LogMessage _ _ em) <- lm, isInfixOf (tL s) (tL em)]
 
 whatWentWrongEnhanced :: String -> [LogMessage] -> [String]
-whatWentWrongEnhanced s lm = undefined
+whatWentWrongEnhanced s lm = [x | (LogMessage _ _ x) <- mergeMessages s lm]  -- still needs sorting and de-duping
 
 (|||) :: (LogMessage -> Bool) -> (LogMessage -> Bool) -> LogMessage -> Bool
 (|||) f g x = f x || g x -- (||) is Haskell’s ordinary "or" operator
 
 tL :: String -> String
 tL s = map toLower s
+
+mergeMessages :: String -> [LogMessage] -> [LogMessage]
+mergeMessages s lm = sortMessages $ (whatWentWrong' lm) ++ (messagesAbout s lm)
