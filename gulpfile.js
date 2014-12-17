@@ -13,6 +13,6 @@ gulp.task('watch', function() {
 });
 
 gulp.task('test', shell.task([
-  'runhaskell Main.hs'
+  'cd src && runhaskell Main.hs'
 ]))
 
