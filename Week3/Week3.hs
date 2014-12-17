@@ -1,8 +1,8 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module Week3 where
+module Week3.Week3 where
 
-import Log
+import Week3.Log
 import Data.List
 import Data.Char
 

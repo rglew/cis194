@@ -1,8 +1,8 @@
 module Main where
 
-import Week1Tests
-import Week2Tests
-import Week3Tests
+import Week1.Tests
+import Week2.Tests
+import Week3.Tests
 
 main = do week1Tests 
           week2Tests

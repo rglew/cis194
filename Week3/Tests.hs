@@ -1,7 +1,7 @@
-module Week3Tests where
+module Week3.Tests where
 
-import Week3
-import Log
+import Week3.Week3
+import Week3.Log
 import Test.Tasty
 import Test.Tasty.HUnit
 

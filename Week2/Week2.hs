@@ -5,9 +5,9 @@ Notes: <any particular notes about your work -- what you struggled with,
         what's not working, what's really cool, etc.>
 -}
 
-module Week2 where
+module Week2.Week2 where
 
-import Words
+import Week2.Words
 import Data.List
 import Data.List.Split
 import Text.Regex.Posix

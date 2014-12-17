@@ -1,6 +1,6 @@
 -- CIS 194 Homework 3
 
-module Log where
+module Week3.Log where
 
 import Control.Applicative ( (<$>)     )
 import Text.Read           ( readMaybe )

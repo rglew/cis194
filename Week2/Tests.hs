@@ -1,7 +1,7 @@
-module Week2Tests where
+module Week2.Tests where
 
 import Test.HUnit
-import Week2
+import Week2.Week2
 
 
 week2Tests = do runTestTT week2Ex1Tests
