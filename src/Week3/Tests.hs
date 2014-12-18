@@ -5,18 +5,13 @@ import Week3.Log
 import Test.Tasty
 import Test.Tasty.HUnit
 
-week3Tests = defaultMain tests
-
 testLog :: String
 testLog = "I 5053 pci_id: con ing!\nI 4681 ehci 0xf43d000:15: regista14: [0xbffff 0xfed nosabled 00-02] Zonseres: brips byted nored)\nW 3654 e8] PGTT ASF! 00f00000003.2: 0x000 - 0000: 00009dbfffec00000: Pround/f1743colled\nI 4076 verse.'\nI 4764 He trusts to you to set them free,"
 
 testFullLog :: [LogMessage]
 testFullLog = [LogMessage Info 5053 "pci_id: con ing!",LogMessage Info 4681 "ehci 0xf43d000:15: regista14: [0xbffff 0xfed nosabled 00-02] Zonseres: brips byted nored)",LogMessage Info 4076 "verse.'",LogMessage Info 4764 "He trusts to you to set them free,"]
 
-tests :: TestTree
-tests = testGroup "Week 3 Tests" [unitTests]
-
-unitTests = testGroup "Week 3 Unit tests"
+week3UnitTests = testGroup "Week 3 Unit tests"
   [ testCase "Parse error message" $
        ValidLM (LogMessage (Error 2) 562 "help help") @=? parseMessage "E 2 562 help help"
 

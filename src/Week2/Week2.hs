@@ -72,7 +72,7 @@ scrabbleValueTemplate :: STemplate -> String -> Int
 scrabbleValueTemplate st word = applyWordMulti st (applyLetterMulti st word)
 
 buildTiles :: [Char] -> [Char] -> [Char]
-buildTiles t h = concat (filter (\x -> x /= "") (splitOn "?" t)) ++ h
+buildTiles t h = concat (filter (/= "") (splitOn "?" t)) ++ h
 
 -- determines if it matches by zipping the template and the hand together with the func matchelem and folding.  If it's all True it stays True but if anything fails it is False
 matchesPattern :: Template -> String -> Bool
