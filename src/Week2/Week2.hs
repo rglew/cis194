@@ -54,7 +54,7 @@ wordFitsTemplate :: Template -> Hand -> String -> Bool
 wordFitsTemplate t h s 
     | length t /= length s = False 
     | t == s = True
-    | otherwise = formableBy s (buildTiles t h)
+    | otherwise = (formableBy s (buildTiles t h)) && (matchesPattern t s)
 
 
 -- list comprehension to 
@@ -76,10 +76,10 @@ buildTiles t h = concat (filter (/= "") (splitOn "?" t)) ++ h
 
 -- determines if it matches by zipping the template and the hand together with the func matchelem and folding.  If it's all True it stays True but if anything fails it is False
 matchesPattern :: Template -> String -> Bool
-matchesPattern t w 
-       | length t /= length w = False
-       | t == w = True
-       | otherwise = foldl (&&) True (zipWith matchElem t w) 
+matchesPattern t s 
+       | length t /= length s = False
+       | t == s = True
+       | otherwise = foldl (&&) True (zipWith matchElem t s) 
 
 -- build a list of True/False so we can zip it
 matchElem :: Char -> Char -> Bool
