@@ -13,24 +13,28 @@ ex3 a b = b
 -- to be total must return a, you may not have a type that interacts with Int
 
 ex4 :: Bool -> a -> a -> a
-ex4 a b c = b
+ex4 tf v1 v2
+  | tf == True = v1
+  | tf == False = v2
 -- could do a number of things...
 
 ex5 :: Bool -> Bool
-ex5 trueOrFalse = trueOrFalse
--- pretty obvious
+ex5 trueOrFalse
+  | (trueOrFalse == True) = False
+  | (trueOrFalse == False) = True
 
 ex6 :: (a -> a) -> a
-ex6 a = undefined
+ex6 x = error "Don't see how this can be written"
 
 ex7 :: (a -> a) -> a -> a
-ex7 a b = undefined
+ex7 f x = f x
+-- simply applies f to x
 
 ex8 :: [a] -> [a]
 ex8 a = a
 
 ex9 :: (a -> b) -> [a] -> [b]
-ex9 a b = undefined
+ex9 a b = error "Not possible"
 
 -- getting something from a Maybe needs to account for the Nothing condition.  To do this you need to supply a default value of some specific type (check out fromMaybe in Data.Maybe)
 ex10 :: Maybe a -> a
@@ -41,8 +45,6 @@ ex11 c = Just c
 
 ex12 :: Maybe a -> Maybe a
 ex12 a = a
-
-
 
 
  

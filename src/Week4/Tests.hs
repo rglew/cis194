@@ -18,4 +18,23 @@ week4UnitTests = testGroup "Week 4 Unit tests"
   , testCase "Ex 2b" $
       4 @=? ex2 2 4
 
+  , testCase "Ex 3a" $
+      2 @=? ex3 2 2
+
+  , testCase "Ex 3b" $
+      '2' @=? ex3 2 '2'
+
+  , testCase "Ex 4a" $
+      "Freddy" @=? ex4 True "Freddy" "Jane"
+
+  , testCase "Ex 4b" $
+      "Jane" @=? ex4 False "Freddy" "Jane"
+
+  , testCase "Ex 5a" $
+      True @=? ex5 False
+
+  , testCase "Ex 7" $
+      "foobar" @=? ex7 (++"bar") ("foo")
+
+
   ]
