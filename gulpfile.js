@@ -8,7 +8,7 @@ gulp.task('default', function() {
 gulp.task('watch', function() {
 
   // Watch .hs files
-  gulp.watch('*.hs', ['test']);
+  gulp.watch('./src/*/*.hs', ['test']);
 
 });
 
