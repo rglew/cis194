@@ -1,6 +1,7 @@
 module Week4.Week4 where
 
 import Data.Char
+import Data.String.Utils
 import Week4.BST
 
 ex1 :: a -> b -> b
@@ -63,7 +64,10 @@ allCaps s = foldl (&&) True $ map fA s
                       | otherwise = isUpper (s!!0)
 
 dropTrailingWhitespace :: String -> String
+dropTrailingWhitespace s = rstrip s
 
+firstLetters :: [String] -> [Char]
+firstLetters = undefined
 
 
 

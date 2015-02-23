@@ -47,5 +47,26 @@ week4UnitTests = testGroup "Week 4 Unit tests"
 
   , testCase "Ex14d" $
       False @=? allCaps ["Hi","there"]
+ 
+  , testCase "Ex15a" $
+      "foo" @=? dropTrailingWhitespace "foo"
+
+  , testCase "Ex15b" $
+      "" @=? dropTrailingWhitespace ""
+
+  , testCase "Ex15c" $
+      "bar" @=? dropTrailingWhitespace "bar  "
+
+  , testCase "Ex16a" $
+      ['f','b'] @=? firstLetters ["foo", "bar"]
+
+  , testCase "Ex16b" $
+      ['a'] @=? firstLetters ["alpha",""]
+
+  , testCase "Ex16c" $
+      [] @=? firstLetters []
+
+  , testCase "Ex16d" $
+      [] @=? firstLetters ["",""]
 
   ]
