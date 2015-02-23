@@ -69,4 +69,13 @@ week4UnitTests = testGroup "Week 4 Unit tests"
   , testCase "Ex16d" $
       [] @=? firstLetters ["",""]
 
+  , testCase "Ex17a" $
+    "[alpha,beta,gamma]" @=? asList ["alpha","beta","gamma"]
+
+  , testCase "Ex17b" $
+    "[]" @=? asList []
+
+  , testCase "Ex17c" $
+    "[lonely]" @=? asList ["lonely"]
+
   ]

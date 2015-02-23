@@ -1,6 +1,8 @@
 module Week4.Week4 where
 
 import Data.Char
+import Data.List
+import Data.Maybe
 import Data.String.Utils
 import Week4.BST
 
@@ -67,8 +69,11 @@ dropTrailingWhitespace :: String -> String
 dropTrailingWhitespace s = rstrip s
 
 firstLetters :: [String] -> [Char]
-firstLetters = undefined
+firstLetters ss = map fromJust $ filter isJust $ map safeHead ss
 
+safeHead :: [a] -> Maybe a
+safeHead [] = Nothing
+safeHead (x:_) = Just x
 
-
- 
+asList :: [String] -> String
+asList ss = "[" ++ intercalate "," ss ++ "]"
