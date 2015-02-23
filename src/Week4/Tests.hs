@@ -35,6 +35,17 @@ week4UnitTests = testGroup "Week 4 Unit tests"
 
   , testCase "Ex 7" $
       "foobar" @=? ex7 (++"bar") ("foo")
+  
+  , testCase "Ex 14a" $
+      True @=? allCaps ["Hi","There"]
 
+  , testCase "Ex14b" $
+      True @=? allCaps []
+
+  , testCase "Ex14c" $
+      False @=? allCaps ["", "Blah"]
+
+  , testCase "Ex14d" $
+      False @=? allCaps ["Hi","there"]
 
   ]

@@ -1,5 +1,8 @@
 module Week4.Week4 where
 
+import Data.Char
+import Week4.BST
+
 ex1 :: a -> b -> b
 ex1 _ b = b
 --must return b - only option
@@ -45,6 +48,23 @@ ex11 c = Just c
 
 ex12 :: Maybe a -> Maybe a
 ex12 a = a
+
+insertBST :: (a -> a -> Ordering) -> a -> BST a -> BST a
+insertBST _ x Leaf = Node Leaf x Leaf
+insertBST f x (Node a y b)
+    | f x y == EQ || f x y == LT = Node (insertBST f x a) y b
+    | f x y == GT                = Node a y (insertBST f x b)
+insertBST _ _ _ = error "impossible"
+
+allCaps :: [String] -> Bool
+allCaps s = foldl (&&) True $ map fA s 
+            where fA s 
+                      | s == "" = False
+                      | otherwise = isUpper (s!!0)
+
+dropTrailingWhitespace :: String -> String
+
+
 
 
  
