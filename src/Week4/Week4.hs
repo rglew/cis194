@@ -40,7 +40,7 @@ ex8 :: [a] -> [a]
 ex8 a = a
 
 ex9 :: (a -> b) -> [a] -> [b]
-ex9 a b = error "Not possible"
+ex9 = map
 
 -- getting something from a Maybe needs to account for the Nothing condition.  To do this you need to supply a default value of some specific type (check out fromMaybe in Data.Maybe)
 ex10 :: Maybe a -> a
@@ -50,7 +50,7 @@ ex11 :: a -> Maybe a
 ex11 c = Just c
 
 ex12 :: Maybe a -> Maybe a
-ex12 a = a
+ex12 z = z
 
 insertBST :: (a -> a -> Ordering) -> a -> BST a -> BST a
 insertBST _ x Leaf = Node Leaf x Leaf

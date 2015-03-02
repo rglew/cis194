@@ -14,5 +14,10 @@ gulp.task('watch', function() {
 
 gulp.task('test', shell.task([
   'cd src && runhaskell Main.hs'
-]))
+]));
+
+gulp.task('w4', shell.task([
+  'cd src && runhaskell Week4Tests.hs'
+]));
+
 
