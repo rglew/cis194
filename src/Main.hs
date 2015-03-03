@@ -4,6 +4,7 @@ import Week1.Tests
 import Week2.Tests
 import Week3.Tests
 import Week4.Tests
+import Week5.Tests
 import Test.Tasty
 import Test.Tasty.HUnit
 
@@ -17,4 +18,4 @@ main = do week1Tests
 tastyTests = defaultMain tests
 
 tests :: TestTree
-tests = testGroup "Tasty Unit Tests" [week3UnitTests, week4UnitTests]
+tests = testGroup "Tasty Unit Tests" [week3UnitTests, week4UnitTests, week5UnitTests]
