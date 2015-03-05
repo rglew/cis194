@@ -4,6 +4,7 @@ import Week5.Ring
 import Week5.Parser
 import Data.List
 
+
 data Mod5 = Mod5 Integer deriving (Show, Eq)
 
 instance Ring Mod5 where
@@ -49,3 +50,21 @@ instance Parsable Mat2x2 where
     rest <- stripPrefix "]]" rest
 
     return ((Mat2x2 a b c d), rest)
+
+instance Ring Bool where
+  add = xor
+  addId = False
+  addInv x = False
+  mul = (&&)
+  mulId = True
+
+instance Parsable Bool where
+  parse str
+    | Just rest <- stripPrefix "True" str = Just (True, rest)
+    | Just rest <- stripPrefix "False" str = Just (False, rest)
+    | otherwise = Nothing
+
+
+xor :: Bool -> Bool -> Bool
+xor True a = not a
+xor False a = a

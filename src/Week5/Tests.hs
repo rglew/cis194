@@ -6,7 +6,7 @@ import Week5.Parser
 import Test.Tasty
 import Test.Tasty.HUnit
 
-week5UnitTests = testGroup "Week 5 Unit tests"
+week5UnitTests = testGroup "Week 5 Unit tests - good candidates for quick check"
   [ 
     testCase "Ex 01a - Integer Ring has Additive Identity" $
        1 @=? add (1 :: Integer) addId,
@@ -51,6 +51,22 @@ week5UnitTests = testGroup "Week 5 Unit tests"
        (Mat2x2 5 5 5 5) @=? addInv (Mat2x2 (-5) (-5) (-5) (-5)),
 
     testCase "Ex 03e - Mat2x2 is parsable" $
-       Just (Mat2x2 18 18 27 27) @=? (parseRing "[[2,2][3,3]] * [[4,4][5,5]]")
+       Just (Mat2x2 18 18 27 27) @=? (parseRing "[[2,2][3,3]] * [[4,4][5,5]]"),
+
+    testCase "Ex 04a - Bool Ring has Additive Identity" $
+       True @=? add True addId,
+
+    testCase "Ex 04b - Bool Ring is commutative" $
+       add True False @=? add False True,
+
+    testCase "Ex 04c - Bool Ring is associative" $
+        (True `mul` True) `mul` False @=? True `mul` (True `mul` False),
+
+    testCase "Ex 04d - Bool Ring has Additive Inverse " $
+       False @=? addInv False, --not 100% on this one
+
+    testCase "Ex 04e - Bool is parsable" $
+       Just True @=? (parseRing "True * True")
+ 
  
   ]
