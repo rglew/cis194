@@ -66,3 +66,33 @@ eval (AddInv x) = addInv (eval x)
 eval MulId      = mulId
 eval (Add x y)  = add (eval x) (eval y)
 eval (Mul x y)  = mul (eval x) (eval y)
+
+
+distribute :: RingExpr a -> RingExpr a
+distribute = transform distribute'
+    where distribute' (Mul x (Add y z)) = Just $ Add (Mul x y) (Mul x z)
+          distribute' (Mul (Add x y) z) = Just $ Add (Mul x z) (Mul y z)
+          distribute' _ = Nothing
+
+
+squashMulId :: (Eq a, Ring a) => RingExpr a -> RingExpr a
+squashMulId AddId = AddId
+squashMulId MulId = MulId
+squashMulId (Lit n) = Lit n
+squashMulId (AddInv x) = AddInv (squashMulId x)
+squashMulId (Add x y) = Add (squashMulId x) (squashMulId y)
+squashMulId (Mul x (Lit y))
+    | y == mulId = squashMulId x
+squashMulId (Mul (Lit x) y)
+    | x == mulId = squashMulId y
+squashMulId (Mul x y) = Mul (squashMulId x) (squashMulId y)
+
+transform :: (RingExpr a -> Maybe (RingExpr a)) -> RingExpr a -> RingExpr a
+transform f e
+    | Just expr <- f e = expr
+transform _ AddId = AddId
+transform _ MulId = MulId
+transform _ e@(Lit n) = e
+transform f (AddInv x) = AddInv (transform f x)
+transform f (Add x y) = Add (transform f x) (transform f y)
+transform f (Mul x y) = Mul (transform f x) (transform f y)
