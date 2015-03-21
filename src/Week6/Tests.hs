@@ -17,11 +17,11 @@ fooVal = T.pack "Foo"
 week6UnitTests = testGroup "Week 6 Unit tests" --not sure if this will work but lets see
   [ 
     testCase "Ex 01a - Test N converts to False value" $
-       (Bool False) @=? ynToBool (String falseVal) 
+       (Bool False) @=? ynToBool (String falseVal), 
 
-    --testCase "Ex 01b - Test Y converts to True value" $
-    --   (Bool True) @=? ynToBool (String T.pack "Y"), 
+    testCase "Ex 01b - Test Y converts to True value" $
+       (Bool True) @=? ynToBool (String trueVal), 
 
-    --testCase "Ex 01c - Test other is leaves alone" $
-    --   (String T.pack) "Foo" @=? ynToBool (String (T.pack "Foo") 
+    testCase "Ex 01c - Test other input leaves value alone" $
+       (String  fooVal) @=? ynToBool (String fooVal) 
   ]
